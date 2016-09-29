@@ -22,5 +22,7 @@ clf = RandomForestClassifier(n_estimators=100, max_features="log2", n_jobs=-1)
 clf.fit(X_train, y_train)
 
 print("Accuracy: %.4f" % clf.score(X_val, y_val))
-print("Saving to data/classifier.pkl")
+print("Saving label encoder to data/labelencoder.pkl")
+joblib.dump(le, "data/labelencoder.pkl")
+print("Saving classifier to data/classifier.pkl")
 joblib.dump(clf, "data/classifier.pkl")
