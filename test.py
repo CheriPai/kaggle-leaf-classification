@@ -1,3 +1,4 @@
+import csv
 import numpy as np
 import pandas as pd
 from sklearn.externals import joblib
@@ -10,4 +11,9 @@ labels = pd.read_csv("data/sample_submission.csv").columns.values
 
 clf = joblib.load("data/classifier.pkl")
 predictions = clf.predict_proba(X)
-predictions = np.concatenate((np.array([leaves.id]).T, predictions), axis=1)
+
+with open("data/submission.csv", "w+") as f:
+    writer = csv.writer(f, delimiter=",")
+    writer.writerow(labels)
+    for i in range(len(predictions)):
+        writer.writerow([leaves.id[i]] + list(predictions[i]))
