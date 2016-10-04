@@ -18,7 +18,7 @@ X = leaves.drop(["species"], axis=1).values
 y = leaves.species
 y = le.transform(y)
 
-sss = StratifiedShuffleSplit(y, 10, test_size=0.2)
+sss = StratifiedShuffleSplit(y, 1, test_size=0.2)
 for train_index, test_index in sss:
     X_train, X_val = X[train_index], X[test_index]
     y_train, y_val = y[train_index], y[test_index]
